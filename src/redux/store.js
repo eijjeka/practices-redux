@@ -1,17 +1,11 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-const countSlice = createSlice({
-  name: "counter",
-  initialState: 0,
-  reducers: {
-    increment: (state) => state + 1,
-    decrement: (state) => state - 1,
-    reset: () => 0,
-  },
-});
-
-export const { increment, decrement, reset } = countSlice.actions;
+import { configureStore } from "@reduxjs/toolkit";
+import { countSlice } from "./counterSlice";
+import { TodoSlice } from "./TodoSlice";
 
 export const store = configureStore({
-  reducer: countSlice,
+  reducer: {
+    count: countSlice.reducer,
+    todo: TodoSlice.reducer,
+  },
+  devTools: true,
 });
